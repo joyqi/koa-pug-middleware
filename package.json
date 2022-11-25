@@ -1,20 +1,18 @@
 {
-  "name": "typescript-module-template",
+  "name": "koa-pug-middleware",
   "keywords": [],
-  "author": "",
+  "author": "joyqi",
   "license": "",
-  "description": "",
+  "description": "A Koa middleware wrapper for Pug.",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/joyqi/koa-pug-middleware.git"
   },
-  "homepage": "",
+  "homepage": "https://github.com/joyqi/koa-pug-middleware#readme",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/joyqi/koa-pug-middleware/issues"
   },
-
   "version": "0.0.1",
-
   "main": "lib/index.js",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
