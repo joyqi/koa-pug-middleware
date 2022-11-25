@@ -1,0 +1,32 @@
+{
+  "name": "typescript-module-template",
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "",
+  "bugs": {
+    "url": ""
+  },
+
+  "version": "0.0.1",
+
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "npx tsc",
+    "test": "npx mocha"
+  },
+  "devDependencies": {
+    "@types/mocha": "latest",
+    "assert": "latest",
+    "mocha": "latest",
+    "ts-node": "latest",
+    "typescript": "latest"
+  }
+}
