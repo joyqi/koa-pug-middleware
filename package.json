@@ -21,10 +21,19 @@
     "test": "npx mocha"
   },
   "devDependencies": {
+    "@types/koa": "^2.13.5",
     "@types/mocha": "latest",
+    "@types/pug": "^2.0.6",
     "assert": "latest",
     "mocha": "latest",
     "ts-node": "latest",
     "typescript": "latest"
+  },
+  "dependencies": {
+    "pug": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=6"
   }
 }
