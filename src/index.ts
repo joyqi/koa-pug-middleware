@@ -2,7 +2,7 @@ import { Options, LocalsObject, compileFile, compileTemplate } from 'pug';
 import { Middleware } from 'koa';
 
 declare module 'koa' {
-    interface Context {
+    interface BaseContext {
         render: (view: string, locals?: LocalsObject, options?: RenderOptions) => Promise<void>;
         setLocal: (key: string, value: any) => void;
     }
