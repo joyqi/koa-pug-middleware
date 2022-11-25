@@ -1,5 +1,6 @@
 import { Options, LocalsObject, compileFile, compileTemplate } from 'pug';
 import { Middleware } from 'koa';
+import { resolve } from 'path';
 
 declare module 'koa' {
     interface BaseContext {
@@ -17,12 +18,12 @@ export default function pug(defaultOptions: DefaultOptions): Middleware {
     // Compile the template and cache it
     // We use custom cache because pug's cache is not exposed
     function getView(view: string, options?: RenderOptions) {
-        const filename = view.endsWith('.pug') ? view : `${view}.pug`;
-        const reanderOptions = { ...defaultOptions, ...options, filename};
+        const reanderOptions = { ...defaultOptions, ...options};
+        const filename = resolve(reanderOptions.basedir || '.', view.endsWith('.pug') ? view : `${view}.pug`);
 
         if (!views.has(filename)) {
             const cache = false;
-            const fn = compileFile(filename, { ...reanderOptions, cache });
+            const fn = compileFile(filename, { ...reanderOptions, filename, cache });
 
             if (!reanderOptions.cache) {
                 return fn;
