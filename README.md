@@ -1,6 +1,6 @@
 # koa-pug-middleware
 
-This is a Koa middleware wrapper for [pug](https://pugjs.org/) template engine.
+This is a Koa middleware wrapper for [Pug](https://pugjs.org/) template engine.
 
 Compare to [koa-pug](https://www.npmjs.com/package/koa-pug), this middleware has the following features:
 
@@ -29,6 +29,7 @@ const app = new Koa();
 
 app.use(pug({
   debug: false,
+  cache: true,        // NOTE: set to false in development
   pretty: false,
   compileDebug: false,
   locals: {

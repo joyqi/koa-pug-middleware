@@ -3,7 +3,7 @@
   "keywords": [],
   "author": "joyqi",
   "license": "",
-  "description": "A Koa middleware wrapper for Pug.",
+  "description": "A Koa Pug view render middleware.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joyqi/koa-pug-middleware.git"
