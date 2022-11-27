@@ -18,14 +18,14 @@ export default function pug(defaultOptions: DefaultOptions): Middleware {
     // Compile the template and cache it
     // We use custom cache because pug's cache is not exposed
     function getView(view: string, options?: RenderOptions) {
-        const reanderOptions = { ...defaultOptions, ...options};
-        const filename = resolve(reanderOptions.basedir || '.', view.endsWith('.pug') ? view : `${view}.pug`);
+        const renderOptions = { ...defaultOptions, ...options};
+        const filename = resolve(renderOptions.basedir || '.', view.endsWith('.pug') ? view : `${view}.pug`);
 
         if (!views.has(filename)) {
             const cache = false;
-            const fn = compileFile(filename, { ...reanderOptions, filename, cache });
+            const fn = compileFile(filename, { ...renderOptions, filename, cache });
 
-            if (!reanderOptions.cache) {
+            if (!renderOptions.cache) {
                 return fn;
             }
 
