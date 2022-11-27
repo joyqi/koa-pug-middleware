@@ -4,10 +4,11 @@ This is a Koa middleware wrapper for [Pug](https://pugjs.org/) template engine.
 
 Compare to [koa-pug](https://www.npmjs.com/package/koa-pug), this middleware has the following features:
 
-1. Support `koa@2` only.
-2. Support `pug@3` only.
-3. Use `app.use(pug())` to mount the middleware, instead of creating a new instance.
-4. Add `context.setLocal` method to set Pug locals for the current request. So you can use `this.setLocal` in your middleware to set locals for the next middleware.
+1. More elegant API, no need to pass `app` to `Pug` constructor.
+2. Follows KISS principle, keep more things to Pug.
+3. Support `koa@2` only.
+4. Support `pug@3` only.
+5. Add `context.setLocal` method to set Pug locals for the current request. So you can use `this.setLocal` in your middleware to set locals for the next middleware.
 
 ## Installation
 
