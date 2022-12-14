@@ -37,16 +37,17 @@ export default function pug(defaultOptions: DefaultOptions): Middleware {
 
     return async (ctx, next) => {
         const defaultLocals = defaultOptions.locals || {};
+        const customLocals: LocalsObject = {};
 
         // Set custom local variables
         ctx.setLocal = (key: string, value: any) => {
-            defaultLocals[key] = value;
+            customLocals[key] = value;
         };
 
         // Add render method to context
         ctx.render = async (view: string, locals?: LocalsObject, options?: RenderOptions) => {
             const fn = getView(view, options);
-            ctx.body = fn({ ...defaultLocals, ...locals });
+            ctx.body = fn({ ...defaultLocals, ...customLocals, ...locals });
         };
 
         await next();
