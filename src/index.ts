@@ -4,7 +4,7 @@ import { resolve } from 'path';
 
 declare module 'koa' {
     interface BaseContext {
-        render: (view: string, locals?: LocalsObject, options?: RenderOptions) => Promise<void>;
+        render: (view: string, locals?: LocalsObject, options?: RenderOptions) => void;
         setLocal: (key: string, value: any) => void;
     }
 }
@@ -38,6 +38,7 @@ export default function pug(defaultOptions: DefaultOptions): Middleware {
     return async (ctx, next) => {
         const defaultLocals = defaultOptions.locals || {};
         const customLocals: LocalsObject = {};
+        let renderer: (() => void) | undefined;
 
         // Set custom local variables
         ctx.setLocal = (key: string, value: any) => {
@@ -45,11 +46,25 @@ export default function pug(defaultOptions: DefaultOptions): Middleware {
         };
 
         // Add render method to context
-        ctx.render = async (view: string, locals?: LocalsObject, options?: RenderOptions) => {
-            const fn = getView(view, options);
-            ctx.body = fn({ ...defaultLocals, ...customLocals, ...locals });
+        ctx.render = (view: string, locals?: LocalsObject, options?: RenderOptions) => {
+            renderer = () => {
+                const fn = getView(view, options);
+                ctx.body = fn({ ...defaultLocals, ...customLocals, ...locals });
+            };
         };
 
         await next();
+
+        if (renderer) {
+            if (ctx.body != null) {
+                throw new Error('ctx.body is already set');
+            }
+
+            if (ctx.headersSent) {
+                throw new Error('Headers have already been sent');
+            }
+
+            renderer();
+        }
     };
 }
